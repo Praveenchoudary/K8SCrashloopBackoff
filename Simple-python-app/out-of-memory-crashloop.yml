@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crashloop-example
+  labels:
+    app: crashloopoom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: outofmemory
+  template:
+    metadata:
+      labels:
+        app: outofmemory
+    spec:
+      containers:
+      - name: outofmemory
+        image: praveen22233/app:v1
+        ports:
+        - containerPort: 8000
+        resources:
+         limits:
+          cpu: "25m"
+          memory: "25Mi"
+         
