@@ -56,6 +56,18 @@ spec:
       effect: NoSchedule
 ```
 
+
+TAINT : When you don’t want to Schedule any Pod On Nodes. We Use Taint
+In Which Cases The pods should not be schedule on Node
+*Suppose There are 3  Nodes in the cluster and need upgrades.At a time we can’t upgrade entier cluster. I need to upgrade one node before upgrade We drain(move existing pods to differnet node in cluster) at that time We make node as unschedule.
+By using Taint we can Make Node:
+•	NoSchedule
+•	NoExecute
+•	PreferNoSchedule
+
+kubectl taint nodes name_of_node key1=value1:NoSchedule
+
+
 4. Tolerations
 
 Tolerations are applied to pods and allow them to schedule onto nodes with matching taints. They override the effect of taints.
