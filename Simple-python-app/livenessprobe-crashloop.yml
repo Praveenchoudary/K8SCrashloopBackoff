@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crashloop-example
+  labels:
+    app: crashloop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crashloop
+  template:
+    metadata:
+      labels:
+        app: crashloop
+    spec:
+      containers:
+      - name: crashloop
+        image: praveen22233/app:v1
+        ports:
+        - containerPort: 8000
+        livenessProbe:
+         exec:
+          command:
+           - cat
+           - /tmp/healthy
+         initialDelaySeconds: 0
+         periodSeconds: 1
